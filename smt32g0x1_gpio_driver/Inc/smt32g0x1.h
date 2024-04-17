@@ -75,38 +75,35 @@ typedef struct{
 /*
  * Base addresses of FLASH and SRAM memories
  */
-#define FLASH_BASEADDR					0x080000000U //Base address for the flash memory (size: 1024KB)
-#define SRAM1_BASEADDR					0x200000000U //Base address to SRAM1 (Size: 112KB)
-#define SRAM2_BASEADDR					0x2001C000U //Base address for SRAM 2 (SRAM1_BASEADDR + 112KB)
-#define ROM_BASEADDR					0x1FFF0000U //System Memory (size: 30KB)
-#define SRAM							SRAM1_BASEADDR
+#define FLASH_BASE					0x080000000U //Base address for the flash memory (size: 1024KB)
+#define SRAM_BASE					0x200000000U //Base address to SRAM1 (Size: 112KB)
+#define ROM_BASE					0x1FFF0000U //System Memory (size: 30KB)
 
 /*
  * Base addresses of peripheral buses
  */
-#define PERIPH_BASEADDR					0x40000000U //Base address of peripherals
-#define APB1PERIPH_BASEADDR				PERIPH_BASEADDR //Base address of ABP bus is peripheral base
-#define APB2PERIPH_BASEADDR				0x40010000U //Base address of ABP bus
-#define AHB1PERIPH_BASEADDR				0x40020000U //Base address of AHB1 bus
-#define AHB2PERIPH_BASEADDR				0x50000000U // Base address of AHB2 bus
+#define PERIPH_BASE					0x40000000U //Base address of peripherals
+#define APB1PERIPH_BASE				PERIPH_BASE //Base address of ABP1 bus is peripheral base
+#define APB2PERIPH_BASE				0x40010000U //Base address of ABP2 bus
+#define AHBPERIPH_BASE				0x40020000U //Base address of AHB bus
+#define IOPORT_BASE					0x50000000U //Base address of IOPORT bus
 
 /*
- * Base addresses of peripherals hanging on the AHB1 bus
+ * Base addresses of peripherals hanging on the IOPORT bus
  * Only interested in GPIO
  */
-#define GPIOA_BASEADDR					(AHB1PERIPH_BASEADDR + 0x0000UL)
-#define GPIOB_BASEADDR					(AHB1PERIPH_BASEADDR + 0x0400UL)
-#define GPIOC_BASEADDR					(AHB1PERIPH_BASEADDR + 0x0800UL)
-#define GPIOD_BASEADDR					(AHB1PERIPH_BASEADDR + 0x0C00UL)
-#define GPIOE_BASEADDR					(AHB1PERIPH_BASEADDR + 0x1000UL)
-#define GPIOF_BASEADDR					(AHB1PERIPH_BASEADDR + 0x1400UL)
-#define GPIOG_BASEADDR					(AHB1PERIPH_BASEADDR + 0x1800UL)
+#define GPIOA_BASE					(IOPORT_BASE + 0x0000UL)
+#define GPIOB_BASE					(IOPORT_BASE + 0x0400UL)
+#define GPIOC_BASE					(IOPORT_BASE + 0x0800UL)
+#define GPIOD_BASE					(IOPORT_BASE + 0x0C00UL)
+#define GPIOE_BASE					(IOPORT_BASE + 0x1000UL)
+#define GPIOF_BASE					(IOPORT_BASE + 0x1400UL)
 
-#define RCC_BASEADDR					(AHB1PERIPH_BASEADDR + 0x3800UL)
+#define RCC_BASE					(AHBPERIPH_BASE + 0x1000UL)
 
-#define SYSCFG_BASEADDR					(APB2PERIPH_BASEADDR + 0x3800UL)
+#define SYSCFG_BASE					(APB2PERIPH_BASE + 0x1000UL)
 
-#define EXTI_BASEADDR					(APB2PERIPH_BASEADDR + 0x3C00UL)
+#define EXTI_BASE					(AHBPERIPH_BASE + 0x1800UL)
 
 /*****************************peripheral register definition structures*******************************/
 /*
