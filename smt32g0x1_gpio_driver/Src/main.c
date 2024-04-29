@@ -16,14 +16,36 @@
  ******************************************************************************
  */
 
+#include <stdio.h>
+#include <stdbool.h>
 #include <stdint.h>
+#include "stm32g0x1.h"
 
-#if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-#endif
+#define RCC_IOPENR		(*((volatile uint32_t *) 0x40021034))
+#define GPIOA_MODER		(*((volatile uint32_t *) 0x50000000))
+#define GPIOA_ODR		(*((volatile uint32_t *) 0x50000014))
+
+void delay()
+{
+	for (int i = 0; i<500000; i++);
+}
 
 int main(void)
 {
+	/* Initial setup */
+	//Enable clock for GPOA
+	RCC_IOPENR |= (1<<0);
+
+	//Set PA5 as output
+	GPIOA_MODER &= ~(3<<(2*5));
+	GPIOA_MODER |= (1<<(2*5));
+
     /* Loop forever */
-	for(;;);
+	for(;;)
+	{
+		GPIOA_ODR |= (1<<5);
+		delay();
+		GPIOA_ODR &= ~(1<<5);
+		delay();
+	}
 }

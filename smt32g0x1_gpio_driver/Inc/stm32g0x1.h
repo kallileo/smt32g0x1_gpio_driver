@@ -5,11 +5,11 @@
  *      Author: Ryzen
  */
 
-#ifndef SMT32G0X1_H_
-#define SMT32G0X1_H_
+#ifndef STM32G0X1_H_
+#define STM32G0X1_H_
 
 #include <stdint.h>
-#include <stddef.h>
+//#include <stddef.h>
 
 
 #define __vo  volatile
@@ -76,12 +76,9 @@ typedef struct{
  * Base addresses of FLASH and SRAM memories
  */
 #define FLASH_BASE					0x080000000U //Base address for the flash memory (size: 1024KB)
-#define SRAM_BASE					0x200000000U //Base address to SRAM1 (Size: 112KB)
-#define ROM_BASE					0x1FFF0000U //System Memory (size: 30KB)
+#define SRAM_BASE					0x200000000U //Base address to SRAM1 (Size: 1)
 
-/*
- * Base addresses of peripheral buses
- */
+/* Base addresses of peripheral buses */
 #define PERIPH_BASE					0x40000000U //Base address of peripherals
 #define APB1PERIPH_BASE				PERIPH_BASE //Base address of ABP1 bus is peripheral base
 #define APB2PERIPH_BASE				0x40010000U //Base address of ABP2 bus
@@ -190,48 +187,47 @@ typedef struct {
  * Peripheral definitions (peripheral base addresses typecasted as xxx_RegDef_t)
  */
 
-#define EXTI				((EXTI_RegDef_t*) EXTI_BASEADDR)
+#define EXTI				((EXTI_RegDef_t*) EXTI_BASE)
 
-#define GPIOA				((GPIO_RegDef_t*) GPIOA_BASEADDR)
-#define GPIOB				((GPIO_RegDef_t*) GPIOB_BASEADDR)
-#define GPIOC				((GPIO_RegDef_t*) GPIOC_BASEADDR)
-#define GPIOD				((GPIO_RegDef_t*) GPIOD_BASEADDR)
-#define GPIOE				((GPIO_RegDef_t*) GPIOE_BASEADDR)
-#define GPIOF				((GPIO_RegDef_t*) GPIOF_BASEADDR)
-#define GPIOG				((GPIO_RegDef_t*) GPIOG_BASEADDR)
+#define GPIOA				((GPIO_RegDef_t*) GPIOA_BASE)
+#define GPIOB				((GPIO_RegDef_t*) GPIOB_BASE)
+#define GPIOC				((GPIO_RegDef_t*) GPIOC_BASE)
+#define GPIOD				((GPIO_RegDef_t*) GPIOD_BASE)
+#define GPIOE				((GPIO_RegDef_t*) GPIOE_BASE)
+#define GPIOF				((GPIO_RegDef_t*) GPIOF_BASE)
+#define GPIOG				((GPIO_RegDef_t*) GPIOG_BASE)
 
 /*
  * Clock enable macros for GPIOx peripherals
  */
-
-#define GPIOA_PCLK_EN()		(RCC->AHB1ENR |= (1 << 0))
-#define GPIOB_PCLK_EN()		(RCC->AHB1ENR |= (1 << 1))
-#define GPIOC_PCLK_EN()		(RCC->AHB1ENR |= (1 << 2))
-#define GPIOD_PCLK_EN()		(RCC->AHB1ENR |= (1 << 3))
-#define GPIOE_PCLK_EN()		(RCC->AHB1ENR |= (1 << 4))
-#define GPIOF_PCLK_EN()		(RCC->AHB1ENR |= (1 << 5))
-#define GPIOG_PCLK_EN()		(RCC->AHB1ENR |= (1 << 6))
+#define GPIOA_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 0))
+#define GPIOB_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 1))
+#define GPIOC_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 2))
+#define GPIOD_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 3))
+#define GPIOE_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 4))
+#define GPIOG_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 6))
+#define GPIOF_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 5))
 
 /*
  * Clock enable macros for SYSCFG peripherals
  */
-#define SYSCFG_PCLK_EN()	(RCC->APB2ENR |= ( 1 << 14 ))
+#define SYSCFG_PCLK_ENBL()		(RCC->APB2ENR |= ( 1 << 14 ))
 
 /*
  * Clock disable macros for GPIOx peripherals
  */
-#define GPIOA_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 0))
-#define GPIOB_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 1))
-#define GPIOC_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 2))
-#define GPIOD_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 3))
-#define GPIOE_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 4))
-#define GPIOF_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 5))
-#define GPIOG_PCLK_DI()		(RCC->AHB1ENR &= ~(1 << 6))
+#define GPIOA_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 0))
+#define GPIOB_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 1))
+#define GPIOC_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 2))
+#define GPIOD_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 3))
+#define GPIOE_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 4))
+#define GPIOF_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 5))
+#define GPIOG_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 6))
 
 /*
  * Clock disable macros for SYSCFG peripherals
  */
-#define SYSCFG_PCLK_DI()	(RCC->APB2ENR &= ~(1 << 14))
+#define SYSCFG_PCLK_DSBL()		(RCC->APB2ENR &= ~(1 << 14))
 
 /*
  * Macros to reset GPIOx peripherals
@@ -244,7 +240,7 @@ typedef struct {
 #define GPIOF_REG_RESET()			do{ (RCC->AHB1RSTR |= (1<<5)); (RCC->AHB1RSTR &= ~(1<<5)); }while(0)
 #define GPIOG_REG_RESET()			do{ (RCC->AHB1RSTR |= (1<<6)); (RCC->AHB1RSTR &= ~(1<<6)); }while(0)
 
-#define GPIO_BASEADDR_TO_CODE(addr)		( (addr==GPIOA) ? 0 :\
+#define GPIO_BASE_TO_CODE(addr)		( (addr==GPIOA) ? 0 :\
 										(addr==GPIOB) ? 1 :\
 										(addr==GPIOC) ? 2 :\
 										(addr==GPIOD) ? 3 :\
@@ -313,8 +309,8 @@ typedef struct {
 #define RESET		DISABLE
 
 
-#include "stm32f407xx_gpio_driver.h"
+//#include "stm32f407xx_gpio_driver.h"
 
 
 
-#endif /* SMT32G0X1_H_ */
+#endif /* STM32G0X1_H_ */
