@@ -6,9 +6,6 @@
  */
 
 
-#ifndef INC_STM32G0X1_GPIO_DRIVER_H_
-#define INC_STM32G0X1_GPIO_DRIVER_H_
-
 #include "stm32g0x1.h"
 
 

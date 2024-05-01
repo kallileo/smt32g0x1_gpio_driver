@@ -25,17 +25,21 @@
 #define GPIOA_MODER		(*((volatile uint32_t *) 0x50000000))
 #define GPIOA_ODR		(*((volatile uint32_t *) 0x50000014))
 
+Gpio_Pin_Num Number;
+
+
 void delay()
 {
 	for (int i = 0; i<500000; i++);
 }
+
 
 int main(void)
 {
 	/* Initial setup */
 	//Enable clock for GPOA
 	RCC_IOPENR |= (1<<0);
-
+	GPIO_PortClockEnblOrDsbl(GPIOA, 1);
 	//Set PA5 as output
 	GPIOA_MODER &= ~(3<<(2*5));
 	GPIOA_MODER |= (1<<(2*5));
