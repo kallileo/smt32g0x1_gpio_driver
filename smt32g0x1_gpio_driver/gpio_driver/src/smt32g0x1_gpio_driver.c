@@ -30,7 +30,7 @@
 
 void GPIO_PortClockEnblOrDsbl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
 {
-	if (EnblOrDsbl == 1)
+	if (EnblOrDsbl == ENABLE)
 	{
 		if (pGPIOx == GPIOA)
 		{
