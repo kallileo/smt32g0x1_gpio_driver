@@ -5,6 +5,8 @@
  *      Author: Ryzen
  */
 
+#ifndef INC_STM32F407XX_GPIO_DRIVER_H_
+#define INC_STM32F407XX_GPIO_DRIVER_H_
 
 #include "stm32g0x1.h"
 
@@ -38,7 +40,7 @@
  */
 enum Gpio_Pin_Num
 {
-	Gpio_Pin_Num_0 = 0,
+	GpioPinNum_0,
 	Gpio_Pin_Num_1,
 	Gpio_Pin_Num_2,
 	Gpio_Pin_Num_3,
@@ -157,3 +159,6 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
 void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
 void GPIO_IRQHandling(uint8_t PinNumber);
+
+
+#endif /* INC_STM32F407XX_GPIO_DRIVER_H_ */
