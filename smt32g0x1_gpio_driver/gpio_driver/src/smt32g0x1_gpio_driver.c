@@ -27,7 +27,7 @@
 /*
  * Port Clock control
  */
-/*
+
 void GPIO_PortClockEnblOrDsbl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
 {
 	if (EnblOrDsbl == 1)
@@ -85,5 +85,5 @@ void GPIO_PortClockEnblOrDsbl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
 	}
 }
 
-*/
+
 

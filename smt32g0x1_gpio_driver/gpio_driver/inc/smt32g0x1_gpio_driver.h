@@ -40,7 +40,7 @@
  */
 enum Gpio_Pin_Num
 {
-	GpioPinNum_0,
+	Gpio_Pin_Num_0,
 	Gpio_Pin_Num_1,
 	Gpio_Pin_Num_2,
 	Gpio_Pin_Num_3,
@@ -125,6 +125,13 @@ typedef struct
 	uint8_t GPIO_PinOPType;
 	uint8_t GPIO_PinAltFunMode;
 }GPIO_PinConfig_t;
+
+
+typedef struct
+{
+	GPIO_RegDef_t *pGPIOx;   /*!< This holds the base address of the GPIO port to which the pin belongs >*/
+	GPIO_PinConfig_t GPIO_PinConfig;   /*!< This holds GPIO pin configuration settings >*/
+}GPIO_Handle_t;
 
 /*
  * Port Clock control

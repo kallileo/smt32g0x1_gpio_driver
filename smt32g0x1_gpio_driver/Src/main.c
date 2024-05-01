@@ -27,6 +27,7 @@
 
 Gpio_Pin_Num Number;
 
+//void GPIO_PortClockEnblOrDsbl(GPIOA, 1);
 
 void delay()
 {
