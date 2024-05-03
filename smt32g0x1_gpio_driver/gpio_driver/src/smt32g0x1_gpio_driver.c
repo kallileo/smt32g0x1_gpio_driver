@@ -11,83 +11,93 @@
 #include "smt32g0x1_gpio_driver.h"
 
 
-/*********************************************************************
- * @fn      		  - GPIO_PortClockEnblOrDsbl
- *
- * @brief             - This function enables or disables port clock for the given GPIO port
- *
- * @param[in]         - base address of the gpio peripheral
- * @param[in]         - ENABLE or DISABLE macros
- * @param[in]         -
- *
- * @return            -  none
- *
- * @Note              -  none
-
- */
-/*
- * Port Clock control
- */
-void GPIO_PortClockEnblOrDsbl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
 {
 	if (EnblOrDsbl == ENABLE)
 	{
 		if (pGPIOx == GPIOA)
 		{
-			RCC->IOPENR |= (1 << 0);
+			GPIOA_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOB)
 		{
-			RCC->IOPENR |= (1 << 1);
+			GPIOB_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOC)
 		{
-			RCC->IOPENR |= (1 << 2);
+			GPIOC_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOD)
 		{
-			RCC->IOPENR |= (1 << 3);
+			GPIOD_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOE)
 		{
-			RCC->IOPENR |= (1 << 4);
+			GPIOE_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOF)
 		{
-			RCC->IOPENR |= (1 << 5);
+			GPIOF_PCLK_ENBL();
 		}
 	}
 	else
 	{
 		if (pGPIOx == GPIOA)
 		{
-			RCC->IOPENR &= ~(1 << 0);
+			GPIOA_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOB)
 		{
-			RCC->IOPENR &= ~(1 << 1);
+			GPIOB_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOC)
 		{
-			RCC->IOPENR &= ~(1 << 2);
+			GPIOC_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOD)
 		{
-			RCC->IOPENR &= ~(1 << 3);
+			GPIOD_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOE)
 		{
-			RCC->IOPENR &= ~(1 << 4);
+			GPIOE_PCLK_ENBL();
 		}
 		else if (pGPIOx == GPIOF)
 		{
-			RCC->IOPENR &= ~(1 << 5);
+			GPIOF_PCLK_ENBL();
 		}
 	}
 }
 
-void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl)
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
+	uint32_t temp = 0;
+
+	 //enable the peripheral clock
+	GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
+
+	//1 . configure the mode of gpio pin
+
+	if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= Gpio_Mode_ALTFN)
+	{
+		temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+		pGPIOHandle->pGPIOx->MODER &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinMode)); //Clear bit
+		pGPIOHandle->pGPIOx->MODER |= temp; //Set bits
+	}
+	else
+	{
+
+	}
+
+
+	//2. configure pin speed
+		temp = 0;
+		temp |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+		pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinMode)); //Clear bit
+		pGPIOHandle->pGPIOx->OSPEEDR |= temp; //Set bits
+
+
+
 
 
 }

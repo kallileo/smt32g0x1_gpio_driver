@@ -133,10 +133,6 @@ typedef struct
 	GPIO_PinConfig_t GPIO_PinConfig;   /*!< This holds GPIO pin configuration settings >*/
 }GPIO_Handle_t;
 
-/*
- * Port Clock control
- */
-void GPIO_PortClockEnblOrDsbl(GPIO_RegDef_t *pGPIOx, uint8_t EnblOrDsbl);
 
 /*
  * Peripheral Clock setup

@@ -40,7 +40,7 @@ int main(void)
 	/* Initial setup */
 	//Enable clock for GPOA
 	RCC_IOPENR |= (1<<0);
-	GPIO_PortClockEnblOrDsbl(GPIOA, 1);
+
 	//Set PA5 as output
 	GPIOA_MODER &= ~(3<<(2*5));
 	GPIOA_MODER |= (1<<(2*5));
