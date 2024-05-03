@@ -198,16 +198,18 @@ typedef struct {
 #define GPIOF				((GPIO_RegDef_t*) GPIOF_BASE)
 #define GPIOG				((GPIO_RegDef_t*) GPIOG_BASE)
 
+#define RCC 				((RCC_RegDef_t*)RCC_BASE)
+
 /*
  * Clock enable macros for GPIOx peripherals
  */
-#define GPIOA_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 0))
-#define GPIOB_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 1))
-#define GPIOC_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 2))
-#define GPIOD_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 3))
-#define GPIOE_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 4))
-#define GPIOG_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 6))
-#define GPIOF_PCLK_ENBL()		(RCC_RegDef_t->IOPENR |= (1 << 5))
+#define GPIOA_PCLK_ENBL()		(RCC->IOPENR |= (1 << 0))
+#define GPIOB_PCLK_ENBL()		(RCC->IOPENR |= (1 << 1))
+#define GPIOC_PCLK_ENBL()		(RCC->IOPENR |= (1 << 2))
+#define GPIOD_PCLK_ENBL()		(RCC->IOPENR |= (1 << 3))
+#define GPIOE_PCLK_ENBL()		(RCC->IOPENR |= (1 << 4))
+#define GPIOG_PCLK_ENBL()		(RCC->IOPENR |= (1 << 6))
+#define GPIOF_PCLK_ENBL()		(RCC->IOPENR |= (1 << 5))
 
 /*
  * Clock enable macros for SYSCFG peripherals
@@ -217,13 +219,13 @@ typedef struct {
 /*
  * Clock disable macros for GPIOx peripherals
  */
-#define GPIOA_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 0))
-#define GPIOB_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 1))
-#define GPIOC_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 2))
-#define GPIOD_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 3))
-#define GPIOE_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 4))
-#define GPIOF_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 5))
-#define GPIOG_PCLK_DSBL()		(RCC_RegDef_t->IOPENR &= ~(1 << 6))
+#define GPIOA_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 0))
+#define GPIOB_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 1))
+#define GPIOC_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 2))
+#define GPIOD_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 3))
+#define GPIOE_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 4))
+#define GPIOF_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 5))
+#define GPIOG_PCLK_DSBL()		(RCC->IOPENR &= ~(1 << 6))
 
 /*
  * Clock disable macros for SYSCFG peripherals
@@ -304,8 +306,8 @@ typedef struct {
 /*
  * generic macros
  */
-#define ENABLE		1
-#define DISABLE		0
+#define ENABLE		(uint8_t)1
+#define DISABLE		(uint8_t)0
 #define SET			ENABLE
 #define RESET		DISABLE
 
