@@ -198,7 +198,7 @@ typedef struct {
 #define GPIOF				((GPIO_RegDef_t*) GPIOF_BASE)
 #define GPIOG				((GPIO_RegDef_t*) GPIOG_BASE)
 
-#define RCC 				((RCC_RegDef_t*)RCC_BASE)
+#define RCC 				((RCC_RegDef_t*) RCC_BASE)
 
 /*
  * Clock enable macros for GPIOx peripherals

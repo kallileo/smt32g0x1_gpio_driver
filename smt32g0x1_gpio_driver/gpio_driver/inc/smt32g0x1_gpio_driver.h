@@ -13,53 +13,16 @@
 
 /*
  * @GPIO_PIN_NUMBERS
- * GPIO pin numbers
- */
-/*
-#define GPIO_PIN_NO_0  				0
-#define GPIO_PIN_NO_1  				1
-#define GPIO_PIN_NO_2  				2
-#define GPIO_PIN_NO_3  				3
-#define GPIO_PIN_NO_4  				4
-#define GPIO_PIN_NO_5  				5
-#define GPIO_PIN_NO_6  				6
-#define GPIO_PIN_NO_7  				7
-#define GPIO_PIN_NO_8  				8
-#define GPIO_PIN_NO_9  				9
-#define GPIO_PIN_NO_10  			10
-#define GPIO_PIN_NO_11 				11
-#define GPIO_PIN_NO_12  			12
-#define GPIO_PIN_NO_13 				13
-#define GPIO_PIN_NO_14 				14
-#define GPIO_PIN_NO_15 				15
-*/
-
-/*
- * @GPIO_PIN_NUMBERS
  * GPIO pin numbers by using Enumerator instead of Macros
  */
 enum Gpio_Pin_Num
 {
-	Gpio_Pin_Num_0, Gpio_Pin_Num_1, Gpio_Pin_Num_2, Gpio_Pin_Num_3, Gpio_Pin_Num_4,
-	Gpio_Pin_Num_5, Gpio_Pin_Num_6, Gpio_Pin_Num_7, Gpio_Pin_Num_8, Gpio_Pin_Num_9,
-	Gpio_Pin_Num_10, Gpio_Pin_Num_11, Gpio_Pin_Num_12, Gpio_Pin_Num_13, Gpio_Pin_Num_14,
-	Gpio_Pin_Num_15, Gpio_Pin_Num_16
+	Gpio_PinNum_0, Gpio_PinNum_1, Gpio_PinNum_2, Gpio_PinNum_3, Gpio_PinNum_4,
+	Gpio_PinNum_5, Gpio_PinNum_6, Gpio_PinNum_7, Gpio_PinNum_8, Gpio_PinNum_9,
+	Gpio_PinNum_10, Gpio_PinNum_11, Gpio_PinNum_12, Gpio_PinNum_13, Gpio_PinNum_14,
+	Gpio_PinNum_15, Gpio_PinNum_16
 };
 typedef enum Gpio_Pin_Num Gpio_Pin_Num;
-
-/*
- * @GPIO_PIN_MODES
- * GPIO pin possible modes
- */
-/*
-#define GPIO_MODE_IN 		0
-#define GPIO_MODE_OUT 		1
-#define GPIO_MODE_ALTFN 	2
-#define GPIO_MODE_ANALOG 	3
-#define GPIO_MODE_IT_FT     4
-#define GPIO_MODE_IT_RT     5
-#define GPIO_MODE_IT_RFT    6
-*/
 
 /*
  * @GPIO_PIN_MODES
@@ -71,6 +34,7 @@ enum Gpio_Mode
 	Gpio_Mode_IT_FT, Gpio_Mode_IT_RT, Gpio_Mode_IT_RFT
 };
 typedef enum Gpio_Mode Gpio_Mode;
+
 
 /*
  * GPIO pin possible output types
