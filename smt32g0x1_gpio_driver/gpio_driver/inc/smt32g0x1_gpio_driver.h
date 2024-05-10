@@ -137,7 +137,7 @@ typedef struct
 /*
  * Peripheral Clock setup
  */
-void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);
+extern void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);
 
 /*
  * Init and De-init
@@ -147,7 +147,7 @@ void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);
 
 
 /*
- * Data read and write
+ * Data read and writes
  */
 uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);
 uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);

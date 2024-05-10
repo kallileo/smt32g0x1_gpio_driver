@@ -21,13 +21,6 @@
 #include <stdint.h>
 #include "stm32g0x1.h"
 
-#define RCC_IOPENR		(*((volatile uint32_t *) 0x40021034))
-#define GPIOA_MODER		(*((volatile uint32_t *) 0x50000000))
-#define GPIOA_ODR		(*((volatile uint32_t *) 0x50000014))
-
-Gpio_Pin_Num Number;
-
-//void GPIO_PortClockEnblOrDsbl(GPIOA, 1);
 
 void delay()
 {
@@ -35,22 +28,32 @@ void delay()
 }
 
 
+
+
+
+
 int main(void)
 {
 	/* Initial setup */
+	GPIO_Handle_t LedPin;
+	LedPin.GPIO_PinConfig.GPIO_PinNumber = Gpio_Pin_Num_5;
+	LedPin.GPIO_PinConfig.GPIO_PinMode = Gpio_Mode_Out;
+
+	LedPin.pGPIOx = GPIOA;
+
 	//Enable clock for GPOA
-	RCC_IOPENR |= (1<<0);
+	GPIO_PeriClockControl(GPIOA, ENABLE);
 
 	//Set PA5 as output
-	GPIOA_MODER &= ~(3<<(2*5));
-	GPIOA_MODER |= (1<<(2*5));
+	GPIO_Init(&LedPin);
+
 
     /* Loop forever */
 	for(;;)
 	{
-		GPIOA_ODR |= (1<<5);
-		delay();
-		GPIOA_ODR &= ~(1<<5);
+
+		GPIO_ToggleOutputPin(LedPin.pGPIOx, LedPin.GPIO_PinConfig.GPIO_PinNumber);
+
 		delay();
 	}
 }
