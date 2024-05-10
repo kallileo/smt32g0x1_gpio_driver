@@ -40,23 +40,10 @@
  */
 enum Gpio_Pin_Num
 {
-	Gpio_Pin_Num_0,
-	Gpio_Pin_Num_1,
-	Gpio_Pin_Num_2,
-	Gpio_Pin_Num_3,
-	Gpio_Pin_Num_4,
-	Gpio_Pin_Num_5,
-	Gpio_Pin_Num_6,
-	Gpio_Pin_Num_7,
-	Gpio_Pin_Num_8,
-	Gpio_Pin_Num_9,
-	Gpio_Pin_Num_10,
-	Gpio_Pin_Num_11,
-	Gpio_Pin_Num_12,
-	Gpio_Pin_Num_13,
-	Gpio_Pin_Num_14,
-	Gpio_Pin_Num_15,
-	Gpio_Pin_Num_16
+	Gpio_Pin_Num_0, Gpio_Pin_Num_1, Gpio_Pin_Num_2, Gpio_Pin_Num_3, Gpio_Pin_Num_4,
+	Gpio_Pin_Num_5, Gpio_Pin_Num_6, Gpio_Pin_Num_7, Gpio_Pin_Num_8, Gpio_Pin_Num_9,
+	Gpio_Pin_Num_10, Gpio_Pin_Num_11, Gpio_Pin_Num_12, Gpio_Pin_Num_13, Gpio_Pin_Num_14,
+	Gpio_Pin_Num_15, Gpio_Pin_Num_16
 };
 typedef enum Gpio_Pin_Num Gpio_Pin_Num;
 
@@ -80,38 +67,40 @@ typedef enum Gpio_Pin_Num Gpio_Pin_Num;
  */
 enum Gpio_Mode
 {
-	Gpio_Mode_In = 0,
-	Gpio_Mode_Out,
-	Gpio_Mode_ALTFN,
-	Gpio_Mode_IT_FT,
-	Gpio_Mode_IT_RT,
-	Gpio_Mode_IT_RFT
+	Gpio_Mode_IN, Gpio_Mode_OUT, Gpio_Mode_ALTFN, Gpio_Mode_ANALOG,
+	Gpio_Mode_IT_FT, Gpio_Mode_IT_RT, Gpio_Mode_IT_RFT
 };
 typedef enum Gpio_Mode Gpio_Mode;
 
 /*
  * GPIO pin possible output types
  */
-#define GPIO_OP_TYPE_PP   0
-#define GPIO_OP_TYPE_OD   1
+enum Gpio_OutType
+{
+	Gpio_OutType_PUSHPULL, Gpio_OutType_OPENDRAIN
+};
+typedef enum Gpio_OutType Gpio_OutType;
 
 
 /*
  * @GPIO_PIN_SPEED
  * GPIO pin possible output speeds
  */
-#define GPIO_SPEED_LOW			0
-#define GPIO_SPEED_MEDIUM		1
-#define GPIO_SPEED_FAST			2
-#define GPOI_SPEED_HIGH			3
+enum Gpio_Speed
+{
+	Gpio_Speed_LOW, Gpio_Speed_MEDIUM, Gpio_Speed_FAST, Gpio_Speed_HIGH
+};
+typedef enum Gpio_Speed Gpio_Speed;
 
 
 /*
- * GPIO pin pull up AND pull down configuration macros
+ * GPIO pin pull up AND pull down configuration enumeration
  */
-#define GPIO_NO_PUPD   		0
-#define GPIO_PIN_PU			1
-#define GPIO_PIN_PD			2
+enum Gpio_PinPuPd
+{
+	Gpio_PinPuPd_NOPUPD, Gpio_PinPuPd_PU, Gpio_PinPuPd_PD
+};
+typedef enum Gpio_PinPuPd Gpio_PinPuPd;
 
 /*
  * This is a Configuration structure for a GPIO pin

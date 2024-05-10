@@ -28,32 +28,28 @@ void delay()
 }
 
 
-
-
-
-
 int main(void)
 {
 	/* Initial setup */
 	GPIO_Handle_t LedPin;
 	LedPin.GPIO_PinConfig.GPIO_PinNumber = Gpio_Pin_Num_5;
-	LedPin.GPIO_PinConfig.GPIO_PinMode = Gpio_Mode_Out;
+	LedPin.GPIO_PinConfig.GPIO_PinMode = Gpio_Mode_OUT;
+	LedPin.GPIO_PinConfig.GPIO_PinOPType = Gpio_OutType_PUSHPULL;
+	LedPin.GPIO_PinConfig.GPIO_PinSpeed = Gpio_Speed_MEDIUM;
+	LedPin.GPIO_PinConfig.GPIO_PinPuPdControl = Gpio_PinPuPd_NOPUPD;
 
 	LedPin.pGPIOx = GPIOA;
 
 	//Enable clock for GPOA
-	GPIO_PeriClockControl(GPIOA, ENABLE);
+	//GPIO_PeriClockControl(GPIOA, ENABLE);
 
 	//Set PA5 as output
 	GPIO_Init(&LedPin);
 
-
     /* Loop forever */
 	for(;;)
 	{
-
 		GPIO_ToggleOutputPin(LedPin.pGPIOx, LedPin.GPIO_PinConfig.GPIO_PinNumber);
-
 		delay();
 	}
 }

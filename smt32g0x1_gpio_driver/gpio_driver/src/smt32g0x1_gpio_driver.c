@@ -73,15 +73,16 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 {
 	uint32_t temp = 0;
 
-	 //enable the peripheral clock
+	//enable the peripheral clock
 	GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
 
 	//1 . configure the mode of gpio pin
 
-	if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= Gpio_Mode_ALTFN)
+	if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= Gpio_Mode_ANALOG)
 	{
+		//the non interrupt mode
 		temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-		pGPIOHandle->pGPIOx->MODER &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinMode)); //Clear bit
+		pGPIOHandle->pGPIOx->MODER &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //Clear bit
 		pGPIOHandle->pGPIOx->MODER |= temp; //Set bits
 	}
 	else
@@ -93,7 +94,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 	//2. configure pin speed
 		temp = 0;
 		temp |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-		pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinMode)); //Clear bit
+		pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //Clear bit
 		pGPIOHandle->pGPIOx->OSPEEDR |= temp; //Set bits
 
 	//3. configure pull up/down resistor
